@@ -9,32 +9,58 @@ def main():
     t = 0
     sizel, threadedl, nonthreadedl, multiprocessl, simplel = ([] for i in range
                                                               (5))
+
+    with open("threads.txt", "a") as myfile:
+        myfile.write("[")
+    with open("nothreads.txt", "a") as myfile:
+        myfile.write("[")
+    with open("multiproc.txt", "a") as myfile:
+        myfile.write("[")
+    with open("serial.txt", "a") as myfile:
+        myfile.write("[")
+    with open("sizes.txt", "a") as myfile:
+        myfile.write("[")
+
     d = 250
-    iters = 100
-    while d <= 400000:
+    iters = 300
+    while d <= 600000:
         print("About to start iterations with size {:d}".format(d))
-        d = d * 2
-        t = timeit.timeit(stmt = "threads({:d})".format(d), 
+        t = timeit.timeit(stmt = "threads({:d})".format(d),
                           setup = "from __main__ import threads, testmethread", number = iters)
         t = t / iters
         print("Time for threads is: {:f}".format(t))
 
-        t = timeit.timeit(stmt = "nothreads({:d})".format(d), 
+        with open("threads.txt", "a") as myfile:
+            myfile.write(str(t) + ",")
+
+        t = timeit.timeit(stmt = "nothreads({:d})".format(d),
                           setup = "from __main__ import nothreads, testmethread", number = iters)
         t = t / iters
         print("Time for nothreads is: {:f}".format(t))
+        with open("nothreads.txt", "a") as myfile:
+            myfile.write(str(t) + ",")
 
 
         t = timeit.timeit(stmt = "mutliproc({:d}, 4)".format(d), 
                           setup = "from __main__ import mutliproc, testmethread", number = iters)
         t = t / iters
         print("Time for mutliproc is: {:f}".format(t))
+        with open("multiproc.txt", "a") as myfile:
+            myfile.write(str(t) + ",")
 
         t = timeit.timeit(stmt = "serial({:d})".format(d), 
                           setup = "from __main__ import serial, testmethread", number = iters)
         t = t / iters
+
         print("Time for serial is: {:f}".format(t))
-        print("\n\n")
+        with open("serial.txt", "a") as myfile:
+            myfile.write(str(t) + ",")
+
+        with open("sizes.txt", "a") as myfile:
+            myfile.write(str(d) + ",")
+        print("\n")
+
+        d = d * 2
 
 def testmethread(xs, left, right):
     '''
