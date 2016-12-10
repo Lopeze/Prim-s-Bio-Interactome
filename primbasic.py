@@ -26,7 +26,7 @@ def prims(nodes, edges, weights, adjlist):
     '''
     This should be the correct implementation of what prims algorithm states in
     "insert textbook here". We start with an arbitrary node in set "forest" and the rest of the nodes are in the set "nonforest". We iteratively add one node from nonforest into forest if and only if the edge that connects the nonforest node to the forest node is the lowest weight edge possible.
-    Runtime: O(
+    Runtime: O(V^2)
     Input:
         1. a set of nodes for a graph
         2. a set of edges representing a graph
