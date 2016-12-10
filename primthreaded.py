@@ -47,7 +47,7 @@ def primsthread(nodes, edges, weights, adjlist, threadnum):
     This is the same as primsbasic except that we now have a "multithreaded
     version". GIL still locks us to having one thread execute at a time but
     this for a proof of concept.
-    Runtime: O((V^2) / threadnum)
+    Runtime: O(V^2)
     
     Input:
     Return:
