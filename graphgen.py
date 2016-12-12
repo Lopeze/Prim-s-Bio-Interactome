@@ -2,6 +2,10 @@ import matplotlib.pyplot as plt
 import math
 import random
 
+'''
+graphgen has different functions to allow you to create 
+complete graphs, erdos-renyii graphs, and more.
+'''
 def main():
     '''
     Create 3 graphs and plot their degree distribution
