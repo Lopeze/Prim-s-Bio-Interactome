@@ -35,7 +35,7 @@ def prims(nodes, edges, weights, adjlist):
         3. a dictionary of edges and their weights
         4. dictionary of nodes and their adjacent neighbors
     Return:
-        a forest representing the minimal independent set
+        a forest representing the minimal spanning tree
     '''
     nonforest = {} # min weight for each vertex
     forest = {} # what we end with key:value is node->(edge, edgevalue)
