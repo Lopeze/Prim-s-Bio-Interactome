@@ -90,7 +90,7 @@ def serial(size):
     testmethread(xs, 0, size)
     return
 
-def threads(size):
+def threads(size, threadz):
     '''
     This is the threaded version
 
@@ -98,11 +98,11 @@ def threads(size):
         size of list that will be split up by threads
     '''
     xs = [i-1 for i in range(size)]
-    threadshere = [None] * threads
+    threadshere = [None] * threadz
     division = size // len(threadshere)
     left = 0
     right = division
-    for i in range(threads):
+    for i in range(threadz):
         threadshere[i] = Thread(target = testmethread, args = (xs, left, right,))
         threadshere[i].start()
         left = right
