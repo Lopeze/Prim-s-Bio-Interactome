@@ -1,0 +1,33 @@
+import matplotlib.pyplot as plt
+from pylab import *
+
+sizes = [50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950]
+bad = [0.0031365973968058825,0.018396899960935117,0.05364116866141558,0.11797111825086176,0.22123619162477554]
+
+basic = [0.00025516729801893233,0.0007719654683023691,0.0015246035531163217,0.0024150848388671876,0.003615430099889636,0.0050988990534096956,0.006484854780137539,0.00831613558344543,0.010552283748984337,0.012540596174076199,0.01485993918031454,0.018056755270808935,0.02110463730990887,0.024860326116904616,0.028778485283255578,0.03174622341059148,0.0364435457624495,0.04070466633886099,0.046366070285439494]
+
+threaded = [0.003011083249002695,0.006879104897379875,0.011638476997613906,0.01666624360717833,0.022126712501049042,0.028221835000440478,0.03476067006587982,0.041831909064203504,0.04952280351892114,0.057537015350535514,0.06668542557395994,0.07583944644778967,0.08602646542713047,0.09561971203424037,0.10699718461371958,0.11903584533371031,0.13073456740006806,0.14368874256499112,0.15839206204749645]
+def plot_benches(x,y1, y2, y3):
+    '''
+    y1 = primsbad
+    y2 = primsbasic
+    y3 = primsthreaded
+    '''
+    fig = plt.figure(figsize=(6.5,4)) # make a 6.5" wide by 4" tall figure
+
+    
+    plt.plot(x[0:5], y1, 'r', label = 'bad' )  # plot a red line with circles
+    plt.plot(x, y2, 'b', label = 'basic')
+    plt.plot(x, y3, 'k', label = 'threaded')
+    legend(framealpha = 0.1)
+    plt.xlabel('Number of Vertices')
+    plt.ylabel('Time taken (sec)')
+    plt.title("ER Dense graphs (density=1.75)")
+    plt.tight_layout()              # make the labels "snap" to the grid
+                                    # this may emit a warning, which is OK
+    plt.savefig("dense.png")      # save figure as PNG
+    plt.savefig("dense.pdf")    # optionally, save figure as PDF
+    print('wrote to dense.png')
+    return
+
+plot_benches(sizes, bad, basic, threaded)
