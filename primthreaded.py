@@ -1,6 +1,11 @@
 from threading import Thread
 import io_utils
 import graphgen
+'''
+Our "multithreaded" version. This is a 
+proof of concept of what multithreading would look like if python
+let us concurrently run multiple threads.
+'''
 def main():
     '''
     Build our graph
@@ -23,14 +28,6 @@ def main():
     adjlist['D'] = ['B']
     print(primsthread(V, E, weights, adjlist, 2))
 
-    
-    V, E, weights = io_utils.cgraph('textbookgraph.txt', True)
-    adjlist = graphgen.createadj(V, E)
-    print("ERRRRRRRRRRRRRRR", weights)
-    print("\n HEYO:",adjlist)
-    print(V)
-    print(primsthread(V, E, weights, adjlist, 2))
-
 
 def choosesmallest(nodes, preque, xs, index):
     key = "key"
@@ -50,8 +47,13 @@ def primsthread(nodes, edges, weights, adjlist, threadnum):
     Runtime: O(V^2)
     
     Input:
+        1. a set of nodes for a graph
+        2. a set of edges representing a graph
+        3. a dictionary of edges and their weights
+        4. dictionary of nodes and their adjacent neighbors
+        5. number of threads we want to execute
     Return:
-
+        a forest representing the minimal spanning tree
     '''
     nonforest = {} # min weight for each vertex
     forest = {} # what we end with key:value is node->(edge, edgevalue)
