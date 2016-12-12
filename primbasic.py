@@ -1,7 +1,11 @@
 import graphgen
 import io_utils
 
-
+'''
+main function runs a sample graph to test on. This file contains
+our very simple Prims algorithm that has the expected O(V^2) run
+time.
+'''
 def main():
 
     V = ['A', 'B', 'D', 'C']
@@ -12,14 +16,12 @@ def main():
     weights['A', 'C'] = 4
     weights['B', 'C'] = 2
     weights['B', 'D'] = 2
-    #print(prims(V, E, weights))
 
     adjlist = {}
     adjlist['A'] = ['B', 'C']
     adjlist['B'] = ['A', 'C', 'D']
     adjlist['C'] = ['A', 'B']
     adjlist['D'] = ['B']
-    print("ERRRRRRRRRRRRRRRRRR",weights)
     print(prims(V, E, weights, adjlist))
 
 def prims(nodes, edges, weights, adjlist):
