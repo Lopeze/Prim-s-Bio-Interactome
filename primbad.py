@@ -1,6 +1,13 @@
 import io_utils
 import graphgen
 
+'''
+This is the implementation of a bad prims that has a runtime 
+that has E in its asymptotic notation. This is particularly 
+bad if you are generating graphs where E = V^n. main function
+has a sample graph to test out our version of prims on a very 
+small simple graph.
+'''
 def main():
 
     V = ['A', 'B', 'D', 'C']
@@ -11,8 +18,8 @@ def main():
     weights['A', 'C'] = 4
     weights['B', 'C'] = 2
     weights['B', 'D'] = 2
-    #print(prims(V, E, weights))
 
+    # Adjlist 
     adjlist = {}
     adjlist['A'] = ['B', 'C']
     adjlist['B'] = ['A', 'C', 'D']
@@ -20,15 +27,6 @@ def main():
     adjlist['D'] = ['B']
     print(primsbad(V, E, weights))
 
-    V, E, weights = io_utils.cgraph('textbookgraph.txt', True)
-    adjlist = graphgen.createadj(V, E)
-    print("ERRRRRRRRRRRRRRR", weights)
-    print("\n HEYO:",adjlist)
-    x = primsbad(V, E, weights)
-    sumer = 0
-    for y in x:
-        sumer += x[y]['key']
-    print(sumer)
     
 
 def primsbad(nodes, edges, weights):
